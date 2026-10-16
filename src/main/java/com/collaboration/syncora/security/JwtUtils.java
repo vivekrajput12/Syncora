@@ -41,15 +41,17 @@ public String getJwtFromCookies(HttpServletRequest request) {
     }
     return null;
 }
-    public String generateToken(UserDetialImpForJwt userDetial){
-        String email = userDetial.getEmail();
-        String username = userDetial.getUsername();
-        String uid = userDetial.getUid();
-        String roles = userDetial.getAuthorities().stream()
+    public String generateToken(UserDetailImpForJwt userDetail){
+        String email = userDetail.getEmail();
+        String username = userDetail.getUsername();
+        Long uid = userDetail.getUid();
+        String publicId = userDetail.getPublicId();
+        String roles = userDetail.getAuthorities().stream()
                 .map(authority->authority.getAuthority())
                 .collect(Collectors.joining(","));
         return Jwts.builder()
-                .subject(uid)
+                .subject(publicId)
+                .claim("uid" ,uid)
                 .claim("email",email)
                 .claim("username",username)
                 .claim("roles",roles)

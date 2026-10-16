@@ -7,7 +7,7 @@ import java.time.Instant;
 
 @Data
 @Entity
-@Table(name = "departmentMembers")
+@Table(name = "departmentMember")
 public class DepartmentMember extends OrgScopedEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

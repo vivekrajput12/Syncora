@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class UserService {
     private UserRepo userRepo;
-    public User getUserDetailsByUid(String uid){
+    public User getUserDetailsByUid(Long uid){
         User userDetails = userRepo.findUserByUid(uid).orElseThrow(()->new RuntimeException("Invalid User"));
         return userDetails;
     }

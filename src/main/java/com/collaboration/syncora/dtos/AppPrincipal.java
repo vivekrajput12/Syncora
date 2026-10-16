@@ -8,7 +8,7 @@ import lombok.Value;
 @Value               // makes class immutable (final fields + no setters)
 @Builder             // makes building object very easy
 public class AppPrincipal {
-    String uid;
-    String email;
-    List<String> roles;
+    private Long uid;
+    private String email;
+    private List<String> roles;
 }

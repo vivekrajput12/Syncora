@@ -9,14 +9,15 @@ import java.time.Instant;
 @Data
 @EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
 @Entity
-@Table(name = "boardColumns")
+@Table(name = "boardColumn")
 public class BoardColumn extends OrgScopedEntity {
     @Id
     @EqualsAndHashCode.Include
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long columnId;
+//    @JoinColumn(name = "boardId")
     private Long boardId;
     private String boardName;
-    private Integer position;
+    private String position;
     private Instant createdAt;
 }

@@ -22,7 +22,7 @@ public class UserController {
     public ResponseEntity<ApiResponse<LoggedInUserResponse>>getLoggedInUserController(Authentication authentication){
         try {
             AppPrincipal principal = (AppPrincipal) authentication.getPrincipal();
-            String uid = principal.getUid();
+            Long uid = principal.getUid();
             User user = userService.getUserDetailsByUid(uid);
             LoggedInUserResponse data = LoggedInUserResponse.build(user);
             ApiResponse<LoggedInUserResponse> response = new ApiResponse<>(0, CommonConstant.REQUEST_SUCCESSFUL , data);

@@ -30,11 +30,12 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             System.out.println("jwt " + jwt);
             if(jwt!=null && jwtUtils.validateToken(jwt)){
             // if data not found in redis then we go for db hit :
-                String uid = jwtUtils.getUserUIDFromJwt(jwt);
+                // String uid = jwtUtils.getUserUIDFromJwt(jwt);
                 Claims claims = jwtUtils.getClaimsFromJwt(jwt);
                 String email = claims.get("email" , String.class);
+                Long uid = claims.get("uid" ,Long.class);
                 System.out.println("phase 1 ");
-                UserDetialImpForJwt userDetails = userDetailSerivceImp.loadUserByUsername(email);
+                UserDetailImpForJwt userDetails = userDetailSerivceImp.loadUserByUsername(email);
                 System.out.println("phase 2 "  + userDetails.getAuthorities());
                 List<String> roles = userDetails.getAuthorities()
                         .stream()

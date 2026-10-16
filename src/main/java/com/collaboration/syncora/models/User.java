@@ -6,19 +6,20 @@ import lombok.Data;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 
 @Data
 @Entity
 @Table(name = "users")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long uid;
     @Column(length = 36, updatable = false, nullable = false)
-    private String uid;
+    private String publicId;
     @Column(length = 100)
     private String name;
 
-//    @NotBlank(message = "Username cannot be blank")
     @Column(unique = true , length = 30)
     @Pattern(regexp = "^[A-Za-z0-9_]+$", message = "Username can only contain letters, numbers, and underscores")
     private String userName;
@@ -47,4 +48,12 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "teamId")
     )
     private List<Department> teams;
+
+
+    @PrePersist
+    private void generateRandomPublicid(){
+        if(publicId == null){
+            publicId = UUID.randomUUID().toString();
+        }
+    }
 }

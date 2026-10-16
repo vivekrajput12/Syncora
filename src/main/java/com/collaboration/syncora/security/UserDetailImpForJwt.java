@@ -13,28 +13,31 @@ import java.util.List;
 
 @NoArgsConstructor
 @Data
-public class UserDetialImpForJwt implements UserDetails {
+public class UserDetailImpForJwt implements UserDetails {
 
-    private String uid;
+    private Long uid;
     private String username;
     private String email;
     private String password;
+    private String publicId;
     private Collection<? extends GrantedAuthority> authorities;
-    public UserDetialImpForJwt(String id, String username, String email, String password, Collection<? extends GrantedAuthority> authorities) {
+    public UserDetailImpForJwt(Long id, String username, String email, String password,String publicId, Collection<? extends GrantedAuthority> authorities) {
         this.uid = id;
         this.username = username;
         this.email = email;
         this.password = password;
         this.authorities = authorities;
+        this.publicId = publicId;
     }
 
-    public static UserDetialImpForJwt build(User user){
+    public static UserDetailImpForJwt build(User user){
         GrantedAuthority authority = new SimpleGrantedAuthority(user.getRole().getRoleName());
-        return new UserDetialImpForJwt(
+        return new UserDetailImpForJwt(
                 user.getUid(),
                 user.getUserName(),
                 user.getEmail(),
                 user.getPassword(),
+                user.getPublicId(),
                 Collections.singletonList(authority)
         );
     }

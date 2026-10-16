@@ -15,10 +15,10 @@ public class Board extends OrgScopedEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private Long id;
-    private Long teamId;
+    private Long boardId;
     private String name;
-
+    @Column(name = "departmentId", nullable = false)
+    private Long departmentId;
     private Long createdBy;
 
     private Instant createdAt;

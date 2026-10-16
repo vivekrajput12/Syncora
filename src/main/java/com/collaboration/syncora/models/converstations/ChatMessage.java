@@ -8,21 +8,21 @@ import java.time.LocalDateTime;
 
 @Data
 @Entity
-@Table(name = "chatMessages")
-public class ChatMessages {
+@Table(name = "chatMessage")
+public class ChatMessage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long messageId;
-    private String senderUid;
-    private String receiverUid;
+    private Long messageId;
+    private Long senderUid;
+    private Long receiverUid;
     @Lob
     @Column(columnDefinition = "TEXT")
     private String content;
     private String groupId;
     private LocalDateTime createdAt;
     private LocalDateTime deliveredAt;
-    private boolean delivered;
-    private boolean isRead;
+    private Boolean delivered;
+    private Boolean isRead;
     private LocalDateTime readAt;
     @Enumerated(EnumType.STRING)
     private MessageType messageType;

@@ -6,15 +6,21 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @Entity
-@Table(name = "tasks")
+@Table(name = "task")
 @EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
 public class Task extends OrgScopedEntity {
     @Id
     @EqualsAndHashCode.Include
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long taskId;
+    @Column(nullable = false)
     private String taskName;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "boardId" , referencedColumnName = "boardId")
-    private Board board;
+    private String description;
+    @Column(nullable = false)
+    private String position;
+    @Column(nullable = false)
+    private Long columnId;
+//    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+//    @JoinColumn(name = "column_id")
+//    private BoardColumn column;
 }

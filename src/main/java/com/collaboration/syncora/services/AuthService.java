@@ -9,7 +9,7 @@ import com.collaboration.syncora.models.User;
 import com.collaboration.syncora.repository.RoleRepo;
 import com.collaboration.syncora.repository.UserRepo;
 import com.collaboration.syncora.security.JwtUtils;
-import com.collaboration.syncora.security.UserDetialImpForJwt;
+import com.collaboration.syncora.security.UserDetailImpForJwt;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -45,10 +45,10 @@ public class AuthService {
                 new UsernamePasswordAuthenticationToken(req.getEmail() , req.getPassword())
         );
         System.out.println("checking 1");
-        SecurityContextHolder.getContext().setAuthentication(authentication);
+//        SecurityContextHolder.getContext().setAuthentication(authentication);
         System.out.println("checking 2");
-        UserDetialImpForJwt userDetialImpForJwt = (UserDetialImpForJwt) authentication.getPrincipal();
-        String jwt = jwtUtils.generateToken(userDetialImpForJwt);
+        UserDetailImpForJwt userDetailImpForJwt = (UserDetailImpForJwt) authentication.getPrincipal();
+        String jwt = jwtUtils.generateToken(userDetailImpForJwt);
         System.out.println(">>> "+ jwt);
         return new JwtAuthResponse(jwt);
     }

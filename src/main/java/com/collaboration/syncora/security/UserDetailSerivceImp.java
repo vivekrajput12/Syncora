@@ -12,9 +12,9 @@ import org.springframework.stereotype.Service;
 public class UserDetailSerivceImp implements UserDetailsService {
     private UserRepo userRepo;
     @Override
-    public UserDetialImpForJwt loadUserByUsername(String email) throws UsernameNotFoundException {
+    public UserDetailImpForJwt loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userRepo.findUserByEmail(email)
                 .orElseThrow(()->new UsernameNotFoundException("Email not found"));
-        return UserDetialImpForJwt.build(user);
+        return UserDetailImpForJwt.build(user);
     }
 }
